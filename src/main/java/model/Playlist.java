@@ -24,6 +24,8 @@ public class Playlist {
     @Column (name = "title")
     private String title;
 
-    List<PlaylistsSongs> playlistsSongs;
+    List<Song> playlistsSongs;
 
+    //Song id_song = getId_song();
+    //Playlist id_playlist = getId_playlist();
 }

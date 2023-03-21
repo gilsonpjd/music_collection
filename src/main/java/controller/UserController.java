@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/users")
 
 public class UserController {
-
     @Autowired
     UserService userService;
 
@@ -42,7 +41,6 @@ public class UserController {
         return new ResponseEntity<>
                 (userService.UpdateUser(id, user), HttpStatus.CREATED);
     }
-
     @DeleteMapping("/{id}")
 
     public ResponseEntity<User> DeleteUser (@PathVariable Integer id){

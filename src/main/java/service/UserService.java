@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import repository.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class UserService {
@@ -18,7 +18,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User UserById(Integer id) {
+    public User UserById(Integer id){
         return userRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("User Not Found"));
     }

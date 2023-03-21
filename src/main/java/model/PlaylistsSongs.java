@@ -13,7 +13,10 @@ import lombok.NoArgsConstructor;
 
 public class PlaylistsSongs {
 
-    Songs id_song = getId_song();
+    @Column(name = "id_song")
+    Song id_song = getId_song();
+
+    @Column(name = "id_playlist")
     Playlist id_playlist = getId_playlist();
 
 }
