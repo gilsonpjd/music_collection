@@ -16,7 +16,7 @@ import java.util.List;
 public class Songs {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id;
+   private Integer id;
 
    @Column(name = "title")
    private String title;
