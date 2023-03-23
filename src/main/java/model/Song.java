@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,5 +28,8 @@ public class Song {
    @Column(name = "album")
    private String album;
 
-   List<PlaylistsSongs> playlistsSongs;
+   @ManyToMany(mappedBy = "songs")
+   private List<Playlist> playlistList = new ArrayList<>();
+
+
 }

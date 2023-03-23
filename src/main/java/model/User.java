@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -18,4 +21,9 @@ public class User {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "users)")
+    private List<Playlist> playlistList = new ArrayList<>();
+
+
 }
