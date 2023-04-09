@@ -1,10 +1,11 @@
-package model;
+package gilsonpjd.com.github.musiccollection.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
@@ -12,13 +13,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Playlist {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column (name = "title")
+    @Column(name = "title")
     private String title;
 
     @ManyToOne
@@ -26,8 +27,8 @@ public class Playlist {
     private User user;
 
     @ManyToMany
-    @JoinTable (name = "playslist_songs",
-    joinColumns = @JoinColumn(name = "id_playlist"),
+    @JoinTable(name = "playslist_songs",
+            joinColumns = @JoinColumn(name = "id_playlist"),
             inverseJoinColumns = @JoinColumn(name = "id_song"))
     @JsonIgnoreProperties("playlistList")
     private List<Song> songs;

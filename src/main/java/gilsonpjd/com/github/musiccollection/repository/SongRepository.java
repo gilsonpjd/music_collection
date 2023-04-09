@@ -1,6 +1,6 @@
-package repository;
+package gilsonpjd.com.github.musiccollection.repository;
 
-import model.Song;
+import gilsonpjd.com.github.musiccollection.model.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

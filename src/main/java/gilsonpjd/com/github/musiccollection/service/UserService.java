@@ -1,9 +1,8 @@
-package service;
+package gilsonpjd.com.github.musiccollection.service;
 
-import model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import gilsonpjd.com.github.musiccollection.model.User;
+import gilsonpjd.com.github.musiccollection.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
 
 import java.util.List;
 
@@ -11,12 +10,15 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<User> UsersList() {
         List<User> users = userRepository.findAll();
-        if (users.isEmpty()){
+        if (users.isEmpty()) {
             throw new RuntimeException("Empty list");
         }
         return users;
@@ -44,6 +46,7 @@ public class UserService {
             }
         }
     }
+
     public User UpdateUser(Integer id, User user) {
         User userUpdate = UserById(id);
         CheckIfNameExists(user);
