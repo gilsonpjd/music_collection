@@ -9,7 +9,7 @@ import service.SongService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/song")
+@RequestMapping("/songs")
 
 public class SongController {
     @Autowired

@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +26,10 @@ public class Playlist {
     private User user;
 
     @ManyToMany
-    @JoinTable (name = "playslist_song",
+    @JoinTable (name = "playslist_songs",
     joinColumns = @JoinColumn(name = "id_playlist"),
             inverseJoinColumns = @JoinColumn(name = "id_song"))
+    @JsonIgnoreProperties("playlistList")
     private List<Song> songs;
-
-
-
 
 }

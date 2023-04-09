@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Song {
    private String album;
 
    @ManyToMany(mappedBy = "songs")
+   @JsonIgnoreProperties("songs")
    private List<Playlist> playlistList;
 
 

@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,8 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "users)")
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
     private List<Playlist> playlistList;
 
 

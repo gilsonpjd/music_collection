@@ -1,7 +1,11 @@
 # Título Exemplo
 
 ### Dependências
- - Libs exemplo
+ - spring-boot-starter-data-jpa
+ - spring-boot-devtools
+ - lombok
+ - spring-boot-starter-test
+ - hibernate-core
 
 ### Construído com
  - Tecnologias exemplo
