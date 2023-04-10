@@ -37,7 +37,9 @@ public class SongService {
         Song songUpdate = SongById(id);
         CheckIfSongExists(song);
         songUpdate.setTitle(song.getTitle());
-        return songRepository.save(songUpdate);
+        songUpdate.setArtist(song.getArtist());
+        songUpdate.setAlbum(song.getAlbum());
+        return songRepository.save(song);
     }
 
     private void CheckIfSongExists(Song song) {
