@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/playlist")
+@RequestMapping("/playlists")
 public class PlaylistController {
 
     private final PlaylistService playlistService;
@@ -17,28 +17,22 @@ public class PlaylistController {
     public PlaylistController(PlaylistService playlistService) {
         this.playlistService = playlistService;
     }
-
-    @GetMapping
-    public ResponseEntity<List<Playlist>> PlaylistAll() {
-        return ResponseEntity.ok(playlistService.PlaylistAll());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Playlist> PlaylistById(@PathVariable Integer id) {
-        return ResponseEntity.ok(playlistService.PlaylistById(id));
-    }
-
-    @PostMapping
-    public ResponseEntity<Playlist> CreatedPlayList(Playlist playlist) {
+    @PostMapping("/{id}")
+    public ResponseEntity<Playlist> CreatedPlayList(@PathVariable Integer id_user, @RequestBody Playlist playlist) {
         return new ResponseEntity<>
-                (playlistService.CreatedPlaysList(playlist),
+                (playlistService.CreatedPlaysList(playlist, id_user),
                         HttpStatus.CREATED);
     }
+//    @GetMapping({"/idUser"})
+//    public ResponseEntity PlaylistByIdUser(@PathVariable Integer id_user) {
+//        return ResponseEntity.ok(playlistService.PlaylistByIdUser(id_user));
+//    }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Playlist> UpdatePlayList(@PathVariable Integer id, @RequestBody Playlist playlist) {
-        return ResponseEntity.ok(playlistService.UpdatePlayList(id, playlist));
-    }
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Playlist> UpdatePlayList(@PathVariable Integer id, @RequestBody Playlist playlist) {
+//        return ResponseEntity.ok(playlistService.UpdatePlayList(id, playlist));
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Playlist> DeletePlaysList(@PathVariable Integer id) {

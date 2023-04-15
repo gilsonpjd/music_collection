@@ -1,0 +1,25 @@
+# debug configuration
+debug: false
+
+# server settings
+server:
+  port: 9093
+  error:
+    include-stacktrace: on_param
+
+# Database settings
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+
+# logging settings
+logging:
+  level:
+    web: DEBUG

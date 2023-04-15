@@ -1,10 +1,14 @@
 package gilsonpjd.com.github.musiccollection.service;
 
+import gilsonpjd.com.github.musiccollection.DTO.SongDto;
 import gilsonpjd.com.github.musiccollection.model.Song;
 import gilsonpjd.com.github.musiccollection.repository.SongRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class SongService {
@@ -15,34 +19,47 @@ public class SongService {
         this.songRepository = songRepository;
     }
 
-    public List<Song> SongsList() {
+    public List<SongDto> SongsList() {
         List<Song> songs = songRepository.findAll();
         if (songs.isEmpty()) {
             throw new RuntimeException("empty list");
         }
-        return songs;
+        List<SongDto> songsDto = new ArrayList<>();
+        for (Song song : songs) {
+            SongDto songDto = new SongDto(song);
+            songsDto.add(songDto);
+        }
+        return songsDto;
     }
 
-    public Song SongById(Integer id) {
-        return songRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Song Not Found"));
+    public SongDto SongById(Integer id) {
+        SongDto songDto = new SongDto(songRepository.findById(id).get());
+       if(songDto==null){
+           throw new NoSuchElementException("User Not Found");
+       }
+       return songDto;
     }
 
-    public Song CreatedSong(Song song) {
-        CheckIfSongExists(song);
-        return songRepository.save(song);
+    public SongDto CreatedSong(Song song) {
+        SongDto songDto = new SongDto(song);
+        CheckIfSongExists(songDto);
+        SongDto songDtoSave = new SongDto(songRepository.save(song));
+        return songDtoSave;
     }
 
-    public Song UpdateSong(Integer id, Song song) {
-        Song songUpdate = SongById(id);
-        CheckIfSongExists(song);
-        songUpdate.setTitle(song.getTitle());
-        songUpdate.setArtist(song.getArtist());
-        songUpdate.setAlbum(song.getAlbum());
-        return songRepository.save(songUpdate);
+    public SongDto UpdateSong(Integer id, Song song) {
+        SongById(id);
+        SongDto songDto = new SongDto(song);
+        CheckIfSongExists(songDto);
+        Song songUpdate = new Song();
+        songUpdate.setTitle(songDto.getTitle());
+        songUpdate.setArtist(songDto.getArtist());
+        songUpdate.setAlbum(songDto.getAlbum());
+        SongDto dto = new SongDto(songUpdate);
+        return dto;
     }
 
-    private void CheckIfSongExists(Song song) {
+    private void CheckIfSongExists(SongDto song) {
         List<Song> songs = songRepository.findAll();
         for (Song songAux : songs) {
             if (songAux.getTitle().equals(song.getTitle())) {
