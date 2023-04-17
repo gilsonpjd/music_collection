@@ -52,9 +52,11 @@ public class SongService {
         SongDto songDto = new SongDto(song);
         CheckIfSongExists(songDto);
         Song songUpdate = new Song();
+        songUpdate.setId(id);
         songUpdate.setTitle(songDto.getTitle());
         songUpdate.setArtist(songDto.getArtist());
         songUpdate.setAlbum(songDto.getAlbum());
+        songRepository.save(songUpdate);
         SongDto dto = new SongDto(songUpdate);
         return dto;
     }
